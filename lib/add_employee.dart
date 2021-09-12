@@ -203,7 +203,8 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     const EdgeInsets.symmetric(vertical: 8),
                                 child: Container(
                                   height: 50,
-                                  width: 180,
+                                  width: 160,
+                                  //MediaQuery.of(context).size.width / 0.5,
                                   decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                         side: BorderSide(
@@ -258,7 +259,8 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     const EdgeInsets.symmetric(vertical: 8),
                                 child: Container(
                                   height: 50,
-                                  width: 180,
+                                  width: 160,
+                                  //   MediaQuery.of(context).size.width / 0.5,
                                   decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                         side: BorderSide(
@@ -330,7 +332,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     const EdgeInsets.symmetric(vertical: 8),
                                 child: Container(
                                   height: 50,
-                                  width: 180,
+                                  width: 160,
                                   decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                         side: BorderSide(
@@ -372,7 +374,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     const EdgeInsets.symmetric(vertical: 8),
                                 child: Container(
                                   height: 50,
-                                  width: 180,
+                                  width: 160,
                                   decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                         side: BorderSide(

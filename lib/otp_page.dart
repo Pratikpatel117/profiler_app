@@ -1,5 +1,6 @@
 import 'package:employ_newone/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 //import 'package:flutter_otp/flutter_otp.dart';
 
@@ -10,12 +11,12 @@ class OtpPage extends StatefulWidget {
   _OtpPageState createState() => _OtpPageState();
 }
 
-final  TextEditingController _txt = TextEditingController();
+final TextEditingController _txt = TextEditingController();
 
- bool _otpPass = false ;
+bool _otpPass = false;
+bool btnEnable = false;
 
 class _OtpPageState extends State<OtpPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,14 +26,14 @@ class _OtpPageState extends State<OtpPage> {
             Icons.arrow_back_ios,
             color: Colors.black,
             size: 25,
-          ),onTap: (){
+          ),
+          onTap: () {
             Navigator.pop(context);
-        },
+          },
         ),
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -51,7 +52,6 @@ class _OtpPageState extends State<OtpPage> {
               SizedBox(
                 height: 25,
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -64,18 +64,27 @@ class _OtpPageState extends State<OtpPage> {
                   ),
                 ],
               ),
-
-               Flexible(
-                 child: TextField(
-                 controller: _txt,
-                 keyboardType: TextInputType.number,
-                 decoration: InputDecoration(
-                     hintText: 'Enter OTP Here',
-                     errorText: _otpPass ? 'Enter Valid OTP' : null ),
-
-               ),
-               ),
-
+              Flexible(
+                child: TextField(
+                  controller: _txt,
+                  inputFormatters: [LengthLimitingTextInputFormatter(6)],
+                  keyboardType: TextInputType.number,
+                  onChanged: (text) {
+                    if (text.length == 6) {
+                      setState(() {
+                        btnEnable = true;
+                      });
+                    } else {
+                      setState(() {
+                        btnEnable = false;
+                      });
+                    }
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Enter OTP Here',
+                      errorText: _otpPass ? 'Enter Valid OTP' : null),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 90),
                 child: GestureDetector(
@@ -83,16 +92,25 @@ class _OtpPageState extends State<OtpPage> {
                       height: 45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(23),
-                          color: Colors.lightBlueAccent),
+                          color: (_txt.text.length == 6
+                              ? Color(0xFF52DAB9)
+                              : Color(0xFF223B4F))),
                       child: Stack(
                         children: [
                           Container(
-                            child: Text('SIGNIN',style: TextStyle(color: Colors.white),),
+                            child: Text(
+                              'SIGNIN',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             alignment: Alignment.center,
                           ),
                           Positioned(
                             child: Container(
-                              child: Icon(Icons.arrow_right_alt_sharp,color: Colors.white,),
+                              margin: EdgeInsets.only(right: 15),
+                              child: Icon(
+                                Icons.arrow_right_alt_sharp,
+                                color: Colors.white,
+                              ),
                               alignment: Alignment.centerRight,
                             ),
                           ),
@@ -100,20 +118,24 @@ class _OtpPageState extends State<OtpPage> {
                       )),
                   onTap: () {
                     setState(() {
-                          if(_txt.text.isEmpty){
-                            _otpPass = _txt.text.isEmpty || _txt.text.isNotEmpty != 1111 ? true : false ;
-                          }else {
-                            Navigator.pushNamed(
-                              context,
-                              '/home',
-                            );
-                          }
+                      if (_txt.text.length == 6) {
+                        btnEnable = true;
+                        Navigator.pushReplacementNamed(context, '/home');
+                        // Navigator.pushNamed(
+                        //   context,
+                        //   '/home',
+                        // );
+                      } else {
+                        btnEnable = false;
+                      }
                     });
                   },
                 ),
               ),
-              TextButton(onPressed: (){}, child: Text('Resend OTP'),)
-            
+              TextButton(
+                onPressed: () {},
+                child: Text('Resend OTP'),
+              )
             ],
           ),
         ),
@@ -121,6 +143,3 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 }
-
-
-

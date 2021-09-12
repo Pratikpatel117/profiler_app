@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import'package:employ_newone/employ_list.dart';
+import 'package:employ_newone/employ_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,14 +14,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-
-
       drawer: Drawer(
         elevation: 6,
         child: Container(
@@ -68,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     )),
-             Divider(height: 5, thickness: 2, color: Colors.white10),
+                Divider(height: 5, thickness: 2, color: Colors.white10),
                 InkWell(
                   onTap: () => _scaffoldKey.currentState?.openEndDrawer(),
                   child: ListTile(
@@ -83,14 +79,13 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-
                 Divider(height: 5, thickness: 2, color: Colors.white10),
-
-                 InkWell( onTap: ()=> Navigator.pushNamed(
-                   context,
-                   '/employlist',
-                 ),
-                   child: ListTile(
+                InkWell(
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    '/employlist',
+                  ),
+                  child: ListTile(
                     leading: Icon(
                       Icons.person_outline,
                       color: Colors.white,
@@ -100,8 +95,8 @@ class _HomePageState extends State<HomePage> {
                       'Employee List',
                       style: TextStyle(color: Colors.white),
                     ),
+                  ),
                 ),
-                 ),
                 Divider(height: 5, thickness: 2, color: Colors.white10),
                 ListTile(
                   leading: Icon(
@@ -159,7 +154,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-
       appBar: AppBar(
         leading: IconButton(
             onPressed: () => _scaffoldKey.currentState!.openDrawer(),
@@ -176,14 +170,11 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
-
       body: Container(
-        color: Colors.black12,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+          color: Colors.black12,
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
               child: Image(
                 image: AssetImage(
                   "asset/image/splash_logo.png",
@@ -192,93 +183,87 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
               ),
             ),
-
-                  CarouselSlider(
-                        items: [2].map((i) {
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return Container(
-                            //    height: MediaQuery.of(context).size.height,
-                                  margin: const EdgeInsets.only(bottom: 10.0),
-                                  child: ClipRRect(
-
-                                  //  borderRadius: BorderRadius.circular(8.0),
-                                    child:   Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(25.0),
-                                      ),
-                                      elevation: 5,
-                                      child: Container(
-                                        height: 480,
-                                        width: 300,
-                                        /*decoration:
+            CarouselSlider(
+              items: [2].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                        //    height: MediaQuery.of(context).size.height,
+                        margin: const EdgeInsets.only(bottom: 10.0),
+                        child: ClipRRect(
+                          //  borderRadius: BorderRadius.circular(8.0),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            elevation: 5,
+                            child: Container(
+                              height: 480,
+                              width: 300,
+                              /*decoration:
                                           BoxDecoration(borderRadius: BorderRadius.circular(30)),*/
-                                        child: Column(
-
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Image(
+                                    image: AssetImage(
+                                      "asset/image/static_img.png",
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
-                                            Image(
-                                              image: AssetImage(
-                                                "asset/image/static_img.png",
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        'SUPER LAMP',
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 20,
-                                                            fontWeight: FontWeight.bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Text(
-                                                    "Lorem ipsum is simply dummy text of the " +
-                                                        "printing and typesting industry's Standard" +
-                                                        " dummy text even since the 1500s.",
-                                                    style:
-                                                    TextStyle(color: Colors.black26, fontSize: 15),
-                                                  )
-                                                ],
-                                              ),
+                                            Text(
+                                              'SUPER LAMP',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ],
                                         ),
-                                      ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          "Lorem ipsum is simply dummy text of the " +
+                                              "printing and typesting industry's Standard" +
+                                              " dummy text even since the 1500s.",
+                                          style: TextStyle(
+                                              color: Colors.black26,
+                                              fontSize: 15),
+                                        )
+                                      ],
                                     ),
-                                  ));
-                            },
-                          );
-                        }).toList(),
-                        options: CarouselOptions(
-                          height: 480.0,
-                          enlargeCenterPage: false,
-                          autoPlay: true,
-                          // aspectRatio: 16 / 9,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: true,
-                       //   pauseAutoPlayOnTouch: true,
-                          autoPlayAnimationDuration:
-                              Duration(milliseconds: 800),
-                          viewportFraction: 1,
-                        ),
-                      ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ));
+                  },
+                );
+              }).toList(),
+              options: CarouselOptions(
+                height: 480.0,
+                enlargeCenterPage: false,
+                autoPlay: true,
+                // aspectRatio: 16 / 9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                //   pauseAutoPlayOnTouch: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                viewportFraction: 1,
+              ),
+            ),
 
-
-
-
-           /* Card(
+            /* Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),
@@ -334,12 +319,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),*/
-
-
-
-           ]
-        )
-      ), );
+          ])),
+    );
   }
 }
 

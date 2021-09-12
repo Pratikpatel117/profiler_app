@@ -4,10 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
 class EmployList extends StatefulWidget {
-
-
   const EmployList({Key? key}) : super(key: key);
 
   @override
@@ -15,33 +12,29 @@ class EmployList extends StatefulWidget {
 }
 
 class _EmployListState extends State<EmployList> {
+  // EmployList employList = EmployList();
+  final dialogTital = TextEditingController();
 
-
- // EmployList employList = EmployList();
-    final dialogTital = TextEditingController();
-
-
- /* int? id;
+  /* int? id;
   String? title;
   String? url;
   String? thumbnailUrl;*/
 
-     /*void subData(){
+  /*void subData(){
   dialogTital.clear();
 }*/
 
-   @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-  /* addData.getData().then((value) =>
+    /* addData.getData().then((value) =>
         model = value
    );
 */
   }
 
-
-    AddData addData = AddData();
+  AddData addData = AddData();
 
   @override
   Widget build(BuildContext context) {
@@ -65,25 +58,26 @@ class _EmployListState extends State<EmployList> {
         actions: [
           IconButton(
             icon: Icon(
-            Icons.add,
-            color: Colors.black,
-           ),
-            onPressed: (){
-                showDialog(
-                    context: context,
-                    builder: (con)=> AlertDialog(
-                      title: Text('Enter Employ Data'),
-                      content: TextField(
-                        decoration: InputDecoration(hintText: 'Add Title'),
-                       /* onChanged: (_var){
+              Icons.add,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (con) => AlertDialog(
+                        title: Text('Enter Employ Data'),
+                        content: TextField(
+                          decoration: InputDecoration(hintText: 'Add Title'),
+                          /* onChanged: (_var){
                           title = _var;
                         },*/
-                       controller: dialogTital,
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          child: Text('Add'),
-                          onPressed: (){},          /*async {
+                          controller: dialogTital,
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            child: Text('Add'),
+                            onPressed:
+                                () {}, /*async {
                             print(title);
 
                             Map<String,dynamic> info = {
@@ -96,19 +90,15 @@ class _EmployListState extends State<EmployList> {
                                 :  Fluttertoast.showToast(msg: 'Data Not Added');
                                   Navigator.of(context).pop();
                                   setState(() {});*/
-                              //    subData();
-
+                            //    subData();
                           )
-                      ],
-                    )
-                );
-             },
-
+                        ],
+                      ));
+            },
           ),
         ],
         centerTitle: true,
       ),
-
       body: Container(
           color: Colors.lightBlue[50],
           child: Column(
@@ -118,12 +108,13 @@ class _EmployListState extends State<EmployList> {
                     future: addData.getData(),
                     builder: (context, snapshort) {
                       if (snapshort.hasData) {
-
-                        List<EmployModel> result =  snapshort.data!;
+                        //   List<EmployModel>
+                        var result = snapshort.data!;
 
                         return ListView.builder(
                             itemCount: result.length,
                             itemBuilder: (BuildContext context, index) {
+                              var data = result[index];
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -132,10 +123,9 @@ class _EmployListState extends State<EmployList> {
                                     selected: true,
                                     onTap: () {},
                                     tileColor: Colors.green,
-                                    title: Text(result[index].title),
-                                    leading: Image.network(result[index].thumbnailUrl),
+                                    title: Text(data.title),
+                                    leading: Image.network(data.thumbnailUrl),
                                     trailing: Icon(Icons.delete),
-
                                   ),
                                 ),
                               );
@@ -149,7 +139,7 @@ class _EmployListState extends State<EmployList> {
               ),
             ],
           )),
-        floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamed(context, '/addemploy');

@@ -1,35 +1,27 @@
 import 'dart:convert';
-import 'package:employ_newone/employ_list.dart';
 import 'package:employ_newone/model/employ_model.dart';
 import 'package:http/http.dart' as http;
 
-class AddData{
-
+class AddData {
   var Url = "https://jsonplaceholder.typicode.com/photos";
 
-  Future<List<EmployModel>> getData() async{
-    try{
+  Future<List<EmployModel>> getData() async {
+    try {
       final responce = await http.get(Uri.parse(Url));
-    if(responce.statusCode == 200){
+      if (responce.statusCode == 200) {
+        final employModel = jsonDecode(responce.body);
 
-  final  employModel = jsonDecode(responce.body);
+        return employModel
+            .map<EmployModel>((json) => EmployModel.fromJson(json))
+            .toList();
+      } else {
+        return <EmployModel>[]; // server error
+      }
+    } catch (exception) {
+      return <EmployModel>[]; // network error
 
-   return  employModel.map<EmployModel>((json) => EmployModel.fromJson(json)).toList() ;
-
-    }else{
-          return <EmployModel>[];
     }
-    }catch(exception){
-        return <EmployModel>[];  // network error
-
-    }
-
   }
-
-
-
-
-
 }
 
 
