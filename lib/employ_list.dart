@@ -24,6 +24,8 @@ class _EmployListState extends State<EmployList> {
   dialogTital.clear();
 }*/
 
+  String? title;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -75,23 +77,27 @@ class _EmployListState extends State<EmployList> {
                         ),
                         actions: [
                           ElevatedButton(
-                            child: Text('Add'),
-                            onPressed:
-                                () {}, /*async {
-                            print(title);
+                              child: Text('Add'),
+                              onPressed: () {
+                                createTitle() async {
+                                  print(title);
 
-                            Map<String,dynamic> info = {
-                              "title": title,
-                            };
+                                  Map<String, dynamic> info = {
+                                    "title": title,
+                                  };
 
-                           String responce = await addData.getData()
-                               responce == "Data"
-                                ?  Fluttertoast.showToast(msg: 'Data Succesfully Added')
-                                :  Fluttertoast.showToast(msg: 'Data Not Added');
+                                  String responce =
+                                      await addData.createTitle(info);
+                                  responce == "Data"
+                                      ? Fluttertoast.showToast(
+                                          msg: 'Data Succesfully Added')
+                                      : Fluttertoast.showToast(
+                                          msg: 'Data Not Added');
                                   Navigator.of(context).pop();
-                                  setState(() {});*/
-                            //    subData();
-                          )
+                                  setState(() {});
+                                  //    subData();
+                                }
+                              })
                         ],
                       ));
             },
